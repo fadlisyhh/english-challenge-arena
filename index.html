@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Challenge Arena</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, sans-serif;
+  background: #0b1120;
+  color: #fff;
+  min-height: 100vh;
+}
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.logo { font-size: 24px; font-weight: 800; }
+.logo span { color: #38bdf8; }
+.badge {
+  background: #16243b;
+  border: 1px solid #304763;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #7dd3fc;
+}
+.hero {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 35px;
+  align-items: center;
+}
+h1 {
+  font-size: clamp(40px, 6vw, 70px);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+h1 span { color: #38bdf8; }
+.description {
+  color: #a8b5ca;
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 550px;
+}
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 15px 24px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover { transform: translateY(-2px); }
+.primary { background: #38bdf8; color: #082032; }
+.secondary { background: #1e293b; color: white; border: 1px solid #334155; }
+.card {
+  background: linear-gradient(145deg,#17243a,#101827);
+  border: 1px solid #26364e;
+  border-radius: 24px;
+  padding: 28px;
+}
+.card h2 { margin-bottom: 20px; }
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #28364b;
+}
+.stat:last-child { border-bottom: none; }
+.stat span { color: #9caec5; }
+.stat strong { color: #38bdf8; }
+.features {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+  margin-top: 70px;
+}
+.feature {
+  background: #131e30;
+  border: 1px solid #24344b;
+  padding: 24px;
+  border-radius: 18px;
+}
+.feature .icon { font-size: 30px; margin-bottom: 15px; }
+.feature p { color: #9caec5; line-height: 1.6; margin-top: 10px; }
+footer {
+  text-align: center;
+  margin-top: 60px;
+  color: #64748b;
+  padding-bottom: 30px;
+}
+#game {
+  display: none;
+  margin-top: 40px;
+}
+.question {
+  font-size: 28px;
+  margin: 25px 0;
+}
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.answer {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: white;
+  padding: 18px;
+  text-align: left;
+}
+.answer:hover { background: #334155; }
+#feedback { margin-top: 20px; font-size: 18px; }
+#score { color: #38bdf8; font-weight: bold; }
+@media(max-width:750px) {
+  .hero { grid-template-columns: 1fr; }
+  .features { grid-template-columns: 1fr; }
+  .answers { grid-template-columns: 1fr; }
+  h1 { font-size: 46px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<nav>
+  <div class="logo">ENGLISH <span>ARENA</span></div>
+  <div class="badge">BETA VERSION</div>
+</nav>
+
+<section class="hero" id="landing">
+  <div>
+    <h1>PLAY.<br>LEARN.<br><span>LEVEL UP.</span></h1>
+    <p class="description">
+      Welcome to English Challenge Arena.
+      Test your English, challenge yourself,
+      and compete to become the English Champion.
+    </p>
+    <div class="buttons">
+      <button class="primary" onclick="startGame()">START CHALLENGE →</button>
+      <button class="secondary" onclick="alert('Multiplayer mode is coming soon!')">MULTIPLAYER</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏆 ARENA OVERVIEW</h2>
+    <div class="stat"><span>Game Mode</span><strong>Quiz Challenge</strong></div>
+    <div class="stat"><span>Difficulty</span><strong>Beginner</strong></div>
+    <div class="stat"><span>Questions</span><strong>10</strong></div>
+    <div class="stat"><span>Language</span><strong>English</strong></div>
+    <div class="stat"><span>Experience</span><strong>+ XP</strong></div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="feature">
+    <div class="icon">🎯</div>
+    <h3>Test Your Skills</h3>
+    <p>Challenge your vocabulary, grammar, and everyday English.</p>
+  </div>
+  <div class="feature">
+    <div class="icon">⚡</div>
+    <h3>Quick Challenge</h3>
+    <p>Answer questions and earn points as you progress.</p>
+  </div>
+  <div class="feature">
+    <div class="icon">🏆</div>
+    <h3>Become a Champion</h3>
+    <p>Improve your skills and climb to the top.</p>
+  </div>
+</section>
+
+<section id="game" class="card">
+  <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+    <span id="progress">Question 1</span>
+    <span>Score: <span id="score">0</span></span>
+  </div>
+  <div class="question" id="question"></div>
+  <div class="answers" id="answers"></div>
+  <div id="feedback"></div>
+  <div class="buttons">
+    <button class="primary" id="next" onclick="nextQuestion()" style="display:none">NEXT QUESTION →</button>
+    <button class="secondary" onclick="backHome()">EXIT GAME</button>
+  </div>
+</section>
+
+<footer>
+  English Challenge Arena · Learn English Through Play
+</footer>
+</div>
+
+<script>
+const quiz = [
+ {q:"What does 'Apple' mean?",a:["Jeruk","Apel","Mangga","Pisang"],c:1},
+ {q:"Choose the correct sentence.",a:["She go to school.","She going school.","She goes to school.","She gone school."],c:2},
+ {q:"What is the opposite of 'Big'?",a:["Tall","Small","Long","Wide"],c:1},
+ {q:"'Good morning' is used...",a:["At night","In the morning","At midnight","In the afternoon only"],c:1},
+ {q:"What does 'Book' mean?",a:["Meja","Kursi","Buku","Pintu"],c:2},
+ {q:"Complete: I ___ a student.",a:["am","is","are","be"],c:0},
+ {q:"What is the plural of 'Cat'?",a:["Cates","Cats","Caties","Cat"],c:1},
+ {q:"'Thank you' means...",a:["Maaf","Tolong","Terima kasih","Selamat tinggal"],c:2},
+ {q:"Choose the correct word: He ___ football.",a:["play","playing","plays","played always"],c:2},
+ {q:"What does 'Beautiful' mean?",a:["Cantik","Marah","Sedih","Cepat"],c:0}
+];
+
+let index=0, score=0, locked=false;
+
+function startGame(){
+ document.getElementById('landing').style.display='none';
+ document.getElementById('features').style.display='none';
+ document.getElementById('game').style.display='block';
+ index=0; score=0; locked=false;
+ showQuestion();
+}
+
+function showQuestion(){
+ locked=false;
+ document.getElementById('feedback').innerHTML='';
+ document.getElementById('next').style.display='none';
+ document.getElementById('progress').textContent='Question '+(index+1)+' / '+quiz.length;
+ document.getElementById('score').textContent=score;
+ document.getElementById('question').textContent=quiz[index].q;
+ const answers=document.getElementById('answers');
+ answers.innerHTML='';
+ quiz[index].a.forEach((a,i)=>{
+   const btn=document.createElement('button');
+   btn.className='answer';
+   btn.textContent=String.fromCharCode(65+i)+'. '+a;
+   btn.onclick=()=>chooseAnswer(i);
+   answers.appendChild(btn);
+ });
+}
+
+function chooseAnswer(i){
+ if(locked)return;
+ locked=true;
+ const correct=quiz[index].c;
+ if(i===correct){
+   score+=100;
+   document.getElementById('feedback').innerHTML='✅ Correct! +100 points';
+ }else{
+   document.getElementById('feedback').innerHTML='❌ Incorrect. Correct answer: '+quiz[index].a[correct];
+ }
+ document.getElementById('score').textContent=score;
+ document.getElementById('next').style.display='inline-block';
+}
+
+function nextQuestion(){
+ index++;
+ if(index>=quiz.length){
+   document.getElementById('question').innerHTML='🏆 CHALLENGE COMPLETED!';
+   document.getElementById('answers').innerHTML='';
+   document.getElementById('feedback').innerHTML='Your final score: <strong>'+score+' / 1000</strong>';
+   document.getElementById('next').textContent='PLAY AGAIN';
+   document.getElementById('next').onclick=startGame;
+   document.getElementById('next').style.display='inline-block';
+   return;
+ }
+ document.getElementById('next').textContent='NEXT QUESTION →';
+ document.getElementById('next').onclick=nextQuestion;
+ showQuestion();
+}
+
+function backHome(){
+ document.getElementById('game').style.display='none';
+ document.getElementById('landing').style.display='grid';
+ document.getElementById('features').style.display='grid';
+ document.getElementById('next').textContent='NEXT QUESTION →';
+ document.getElementById('next').onclick=nextQuestion;
+}
+</script>
+</body>
+</html>
